@@ -1,0 +1,23 @@
+{
+  "name": "typographix-blog-v3",
+  "version": "1.0.0",
+  "description": "Typographix Blog using SCSS",
+  "homepage": "https://github.com/Ida0520/Typographix-blog-v3#readme",
+  "bugs": {
+    "url": "https://github.com/Ida0520/Typographix-blog-v3/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ida0520/Typographix-blog-v3.git"
+  },
+  "license": "ISC",
+  "author": "Ida Ström",
+  "type": "commonjs",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "sass": "^1.97.3"
+  }
+}
