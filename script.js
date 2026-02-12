@@ -32,3 +32,52 @@ function checkScroll() {
 // event listener for scroll event
 window.addEventListener('scroll', checkScroll);
 
+
+// Dark mode ----------------------------------------------------
+const themeSwitcher = document.getElementById('theme-switcher');
+
+// Update Theme Icon & Text
+function UpdateThemeIcon(isDarkMode) {
+  themeSwitcher.children[0].classList.replace(isDarkMode ? 'fa-sun' :  'fa-moon', isDarkMode ? 'fa-moon' : 'fa-sun');
+}
+
+// Determine if dark mode is prefered 
+function prefersDarkMode() {
+  return window.matchMedia && window.matchMedia('prefers-color-scheme: dark').matches;
+}
+
+// set the theme based on the prefernce
+function setThemeBasedOnPreference() {
+  const isDarkMode = prefersDarkMode();
+  document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+  UpdateThemeIcon(isDarkMode);
+}
+
+// switch theme
+function switchTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  UpdateThemeIcon(newTheme === 'dark')
+}
+
+// event listener
+themeSwitcher.addEventListener('click', switchTheme);
+
+// Check Local Storage For Theme
+function initializeTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    UpdateThemeIcon(savedTheme === 'dark');
+  } else {
+    setThemeBasedOnPreference();
+  }
+}
+
+// Listen for system theme changes
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setThemeBasedOnPreference);
+
+// initialize theme when the script loads
+initializeTheme();
